@@ -1,0 +1,24 @@
+.titlescreen-background {
+  background-image: url('./assets/titlescreen.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
+  transition: transform 0.4s ease-in-out;
+}
+
+.titlescreen-background.zoomed {
+  transform: scale(3); /* You can adjust the scale value according to your preference */
+}
+
+.button-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-container button {
+  /* Add your button styles here */
+}
