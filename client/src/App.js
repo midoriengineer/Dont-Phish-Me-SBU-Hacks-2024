@@ -1,12 +1,14 @@
+
 import './App.css';
 import React from 'react';
-import Debug from './pages/Debug';
+import StartScreen from './pages/start_screen'
+import "./index.css"
 
 function App() {
-
-  return(
+  return (
     <div>
-      <Debug/>
+      <StartScreen />
+
     </div>
   )  
 }
