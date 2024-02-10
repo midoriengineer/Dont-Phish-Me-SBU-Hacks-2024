@@ -27,4 +27,7 @@ apiCall().then((res) => {
   console.log(jsonString);
 }
 )
+.catch((error) => {
+  console.error('Error in API call', error);
+});
 //
