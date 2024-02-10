@@ -18,6 +18,8 @@ module.exports = {
       },
       boxShadow: {
         'custom': '5px 5px 0 rgb(94, 80, 63)',
+        'button': '5px 5px 0 rgb(10, 9, 8)',
+        'circle': '4px 4px 0 1px rgb(10, 9, 8)',
       },
       colors: {
         'background': '#eae0d5',
