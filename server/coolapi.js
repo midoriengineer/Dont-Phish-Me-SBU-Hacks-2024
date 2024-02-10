@@ -1,11 +1,6 @@
+
 const dotenv = require('dotenv').config();
 const OpenAI = require('openai');
-
-
-
-
-
-
 
 
 async function apiCall() {
@@ -22,12 +17,14 @@ async function apiCall() {
   return chatCompletion.choices[0].message;
 
 }
-
-
-
+/*
+TESTING 1 2 3
+*/
 
 apiCall().then((res) => {
   console.log(res);
+  const jsonString = JSON.stringify(res);
+  console.log(jsonString);
 }
 )
 //
