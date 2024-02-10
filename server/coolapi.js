@@ -21,4 +21,7 @@ async function apiCall() {
 TESTING 1 2 3
 */
 
-console.log(apiCall())
+console.log(apiCall().then((res) => {
+  console.log(res)
+}
+))
