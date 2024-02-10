@@ -20,24 +20,23 @@ const StartScreen = () => {
         <div className="flex flex-col h-screen">
             <header className="bg-[#22333b] flex items-center justify-center">
                 <img src={logo} alt="logo" width="65" className="my-3 mx-4" />
-                <h1 className="text-[#eae0d5] text-center py-6 font-pixelated ">Don't Phish Me</h1>
+                <h1 className="text-[#eae0d5] text-3xl text-center py-6 font-pixelated ">Don't Phish Me</h1>
             </header>
             <div className="bg-[#eae0d5] flex flex-1 overflow-hidden">
 
                 <div className="w-1/3 flex justify-center items-center pl-12">
-                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-xl p-20 shadow-custom text-center">
-                        <h1 className="font-pixelated mb-4">A Game Educating You On Cybersecurity Fundamentals</h1>
-                        <p className="text-gray-700 font-cmd">
+                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-xl p-16 shadow-custom text-center">
+                        <h1 className="font-pixelated mb-6">A Game Educating You On Cybersecurity Fundamentals</h1>
+                        <p className="text-primary font-cmd">
                             Lorem ipsum dolor sit am et, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
                         </p>
                     </div>
                 </div>
 
                 <div className="w-1/3 flex justify-center items-center px-14">
-                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-2xl p-20 shadow-custom p-8">
-                        <p className="text-center mb-4 font-pixelated font-thin text-primary">Welcome to Don't Phish Me</p>
+                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-2xl p-16 shadow-custom p-8">
+                        <p className="text-center mb-4 font-pixelated font-thin text-primary text-xl">Welcome to Don't Phish Me</p>
                         <div className="mb-4">
                             <label htmlFor="rounds" className="font-cmd block mb-2 text-sm font-medium text-primary">Number of Rounds</label>
                             <select id="rounds" className="font-cmd bg-background shadow-custom border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red-500 block w-full p-2.5">
@@ -52,7 +51,7 @@ const StartScreen = () => {
                 </div>
 
                 <div className="w-1/3 flex justify-center items-center px-14">
-                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-xl p-20 shadow-custom">
+                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-xl p-16 shadow-custom">
                         <h2 className="text-lg font-semibold mb-3 font-pixelated">Instructions:</h2>
                         <ul className="font-cmd list-disc list-inside">
                             <li >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
