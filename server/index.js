@@ -1,6 +1,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const apiCall = require('./coolapi.js');
 
 const app = express();
 const port= 3000;
@@ -12,7 +13,7 @@ app.use(bodyParser.json());
 app.post('/generate-emails', (req, res) => {
 // Extract the subject and body from the request body
 const { subject, body } = req.body;
-
+const apiCall = require('./coolapi.js');
 // Generate a random number (0 or 1) to determine if it's a phishing link or a legitimate link
 const isPhishing = Math.random() < 0.5;   
 
@@ -21,10 +22,13 @@ const email = {
     subject: subject,
     body: body,
     link: isPhishing ? 'http://phishing.example.com' : 'http://legitimate.example.com',
-    isPhishing: isPhishing
+    isPhishing: isPhishing,
+    // New Security Category , Added within Email
+    // If it is a phishing email, the security category is 'Unverified' or 
+    securityCategory: isPhishing ? (Math.random() < 0.5 ?'Unverified' : 'Encrypted') : 'Encrypted'
 };
 
-//this is what will be returned
+//this is what will be returned // sends as JSON response
 res.json(email);
 });
 
@@ -33,7 +37,7 @@ app.get('/', (req, res) => {
     //send json response
     //turn string into json
         str = "{'message': 'Hello, World!'}"
-        res.json(str)
+        res.json(apiCall())
     }
 )
 

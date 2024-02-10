@@ -9,7 +9,7 @@ async function apiCall() {
   const openai = new OpenAI({
     apiKey: apiKey, // This is the default and can be omitted
   });
-  const str = "show me a json file example but dont say anything, do it for a project that will include the subject, email, and body "
+  let str = "give me a json file that has an example phishing email of a ceo who needs something urgent , its for a project for a hackathon\nthe json should have\nemail \nthe subject\nemail body\nisphish true\n\nthe email url should be @example.org\nDo not say anything else, just provide the json\n"
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: 'user', content: str }],
     model: 'gpt-3.5-turbo',
@@ -21,13 +21,4 @@ async function apiCall() {
 TESTING 1 2 3
 */
 
-apiCall().then((res) => {
-  console.log(res);
-  const jsonString = JSON.stringify(res);
-  console.log(jsonString);
-}
-)
-.catch((error) => {
-  console.error('Error in API call', error);
-});
-//
+console.log(apiCall())
