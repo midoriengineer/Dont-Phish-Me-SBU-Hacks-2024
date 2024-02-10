@@ -1,7 +1,26 @@
 
-const {VertexAI, HarmCategory, HarmBlockThreshold} = require('@google-cloud/vertexai');
-const creds = require('./creds.json');
-const projectId = 'karaokebase-9ca5b';
-const location = 'us-central1';
+const express = require('express');
+const app = express();
 
+
+
+
+app.get('/', (req, res) => {
+    //send json response
+    //turn string into json
+        str = "{'message': 'Hello, World!'}"
+        res.json(str)
+        
+
+
+
+    }
+)
+
+
+app.listen(3000, () => {
+    console.log('Subject: server is running on http://localhost:3000/')
+    }
+
+)
 
