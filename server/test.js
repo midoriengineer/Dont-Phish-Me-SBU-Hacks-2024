@@ -11,12 +11,14 @@ const openai = new OpenAI({
 });
 
 async function main() {
+  const str = "show me a json file example but dont say anything, do it for a project that will include the subject, email, and body "
   const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: 'CHAT GPT SUCSK' }],
+    messages: [{ role: 'user', content: str }],
     model: 'gpt-4',
   });
   console.log(chatCompletion.choices[0].message);
 
 }
+
 
 main();
