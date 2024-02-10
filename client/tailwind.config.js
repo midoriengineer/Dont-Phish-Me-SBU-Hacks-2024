@@ -23,6 +23,7 @@ module.exports = {
         'background': '#eae0d5',
         'primary': '#0a0908',
         'secondary': '#5e503f',
+        'secondaryLight': '#c6ac8f',
         'headerColor': '#22333b',
       },
     },

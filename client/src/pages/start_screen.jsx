@@ -24,8 +24,8 @@ const StartScreen = () => {
             </header>
             <div className="bg-[#eae0d5] flex flex-1 overflow-hidden">
 
-                <div className="w-1/3 flex justify-center items-center pl-14">
-                    <div className="bg-[#c6ac8f] rounded-xl p-16 shadow-custom text-center">
+                <div className="w-1/3 flex justify-center items-center pl-12">
+                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-xl p-20 shadow-custom text-center">
                         <h1 className="font-pixelated mb-4">A Game Educating You On Cybersecurity Fundamentals</h1>
                         <p className="text-gray-700 font-cmd">
                             Lorem ipsum dolor sit am et, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -36,7 +36,7 @@ const StartScreen = () => {
                 </div>
 
                 <div className="w-1/3 flex justify-center items-center px-14">
-                    <div className="bg-[#c6ac8f] rounded-2xl p-16 shadow-custom p-8">
+                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-2xl p-20 shadow-custom p-8">
                         <p className="text-center mb-4 font-pixelated font-thin text-primary">Welcome to Don't Phish Me</p>
                         <div className="mb-4">
                             <label htmlFor="rounds" className="font-cmd block mb-2 text-sm font-medium text-primary">Number of Rounds</label>
@@ -52,7 +52,7 @@ const StartScreen = () => {
                 </div>
 
                 <div className="w-1/3 flex justify-center items-center px-14">
-                    <div className="bg-[#c6ac8f] rounded-xl p-16 shadow-custom">
+                    <div className="bg-[#c6ac8f] border-2 border-secondary rounded-xl p-20 shadow-custom">
                         <h2 className="text-lg font-semibold mb-3 font-pixelated">Instructions:</h2>
                         <ul className="font-cmd list-disc list-inside">
                             <li >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
