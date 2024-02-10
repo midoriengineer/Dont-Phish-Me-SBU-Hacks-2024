@@ -25,6 +25,8 @@ const GameScreen = () => {
                     <div className="flex-1 overflow-auto"></div>
                 </div>
 
+                {/* CODE A TIMER */}
+
             </div>
         </div>
     );
