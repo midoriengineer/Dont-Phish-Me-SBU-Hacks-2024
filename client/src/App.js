@@ -1,5 +1,5 @@
 
-import './App.css';
+
 import React from 'react';
 import StartScreen from './pages/start_screen'
 import "./index.css"
