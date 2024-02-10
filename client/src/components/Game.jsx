@@ -2,20 +2,22 @@ import React from "react";
 
 export class Game {
 
-    constructor(time, numOfEmails) {
+    constructor(timeLimit, totalNumOfEmails) {
         this.score = 0
-        this.misses = 0
-        this.time = time
-        this.numOfEmails = numOfEmails
+        this.misplacedEmails = []
+        this.time = timeLimit
+        this.numOfEmails = totalNumOfEmails
     }
 
+    //If email placement is correct, add to score
     addScore() {
         this.score++;
         this.numOfEmails--;
     }
 
-    addMiss() {
-        this.misses++;
+    //If email placement is incorrect, add to misplacedEmails
+    addMiss(email) {
+        this.misplacedEmails.push(email);
         this.numOfEmails--;
     }
 
@@ -24,14 +26,18 @@ export class Game {
     }
 
     CheckWin(){
-        if (this.time===0 && this.numOfEmails < 1) {
+        console.log(this.numOfEmails)
+        if (this.numOfEmails < 1) {
+            console.log("You win!")
             return true;
         }
         return false
     }
 
     CheckLose(){
-        if (this.misses > 4) {
+        console.log(this.misplacedEmails.length)
+        if (this.misplacedEmails.length > 4) {
+            console.log("You lose!")
             return true;
         }
         return false

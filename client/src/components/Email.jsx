@@ -13,4 +13,8 @@ export class Email {
         this.isPhish = isPhish;
     }
 
+    addBody(body) {
+        this.body = this.body + body;
+    }
+
 }

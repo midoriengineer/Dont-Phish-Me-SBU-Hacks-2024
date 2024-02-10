@@ -25,10 +25,13 @@ export class EmailFolder {
     }
 
     countUnread(){
-        if (this.emails.length-1 > 99) {
+        if (this.emails.length > 99) {
             return "99+"
         }
-        return (this.emails.length-1).toString();
+        else if (this.emails.length < 1) {
+            return "0"
+        }
+        return (this.emails.length).toString();
     }
 
 }
