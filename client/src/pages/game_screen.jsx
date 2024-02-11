@@ -70,6 +70,7 @@ function GameScreen() {
     const [unreadCount, setUnreadCount] = useState(numOfEmails + 1);
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState();
+
     const [data, setData] = useState({});
     useEffect(() => {
         axios.get("http://localhost:4000/")
@@ -135,10 +136,14 @@ function GameScreen() {
     }
 
     function addEmails() {
-        for (let i = 0; i < [data].length; i++) {
-            inbox.addEmail([data[i]])
+        for (let i = 0; i < emails.length; i++) {
+            inbox.addEmail(emails[i])
         }
         setUnreadCount(inbox.countUnread())
+    }
+
+    function emails() {
+        
     }
 
     function setupInbox() {
