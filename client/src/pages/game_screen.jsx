@@ -26,7 +26,7 @@ const trash = new EmailFolder("Trash", 5);
 //DEBUG EMAILS --- CHANGE LATER ---------------------
 const startEmail = new Email(
     "Today's Task",
-    "<p>Time to work, rookie! You have until I get back to sort these emails.</p><p>You must finish on time. <u style='color: red;'>NO EXPECPTIONS.</u></p><p>Approve this email and get stepping.</p>",
+    "<p>Time to work, rookie! You have until I get back to sort these emails.</p><p>You must finish on time. <u style='color: red;'>NO EXCEPTIONS.</u></p><p>Approve this email and get stepping.</p>",
     "Boss Man",
     "boss@gmail.com",
     "boss.png",
@@ -198,7 +198,10 @@ function GameScreen() {
 
     useEffect(() => {
         if (timer === null || gameover ===true) return
+        console.log("lol")
         if (timer < 1 || (inbox.emails.length < 1 && !(currentEmail && currentEmail.body === startEmail.body))) {
+            console.log("hi")
+
             setTimer(0)
             CheckWinLose()
             return
@@ -244,7 +247,7 @@ function GameScreen() {
                 <div className="flex w-full">
                     <div className="w-1/4">
                         <p className="text-white font-pixelated py-3 pl-4 border-2 border-headerColorLight">Inbox: {unreadCount} Unread</p>
-                        <p className="text-background font-pixelated py-3 pl-4 border-2 border-headerColorLight">Score: 0</p>
+                        <p className="text-background font-pixelated py-3 pl-4 border-2 border-headerColorLight">Score: {score}</p>
                         {/*<p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Starred</p> */}
                     </div>
                     <div className="w-2/4 items-center justify-center flex">
@@ -298,7 +301,7 @@ function GameScreen() {
                             {currentEmail ? (<><div dangerouslySetInnerHTML={{ __html: currentEmail.body }} />
                                 {currentEmail ? (<><br></br><p>{currentEmail.fromName}</p></>) : null}
 
-                                {currentEmail.attachment != "" && currentEmail.attachment ? <><br></br><br></br><img src={Attachment} style={{ display: "inline", maxWidth: "20px" }} /> &nbsp; {currentEmail.attachment}</> : null}
+                                {currentEmail.attachment != "" && currentEmail.attachment != undefined ? <><br></br><br></br><img src={Attachment} style={{ display: "inline", maxWidth: "20px" }} /> &nbsp; {currentEmail.attachment}</> : null}
                             </>) : (
                                 <p>Your inbox is empty.</p>
                             )}
