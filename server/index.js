@@ -5,6 +5,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = 4000;
+//cors
+const cors = require('cors');
+app.use(cors());
+
+
 
 // This will be the middleware to parse JSON files
 app.use(bodyParser.json());
@@ -18,13 +23,63 @@ async function apiCall() {
   const openai = new OpenAI({
     apiKey: apiKey, // This is the default and can be omitted
   });
-  let nonlegitimate = "give me a json file that has an example phishing email of a ceo who needs something urgent , its for a project for a hackathon\nthe json should have\nemail \nthe subject\nemail body\nisphish true\n certificate: standard or unverified\n\nthe email url should be @example.org\nDo not say anything else, just provide the json\n"
-  let legitimate = "give me a json file that has an example legitimate email of a ceo who needs something urgent , its for a project for a hackathon\nthe json should have\nemail \nthe subject\nemail body\nisphish false\n\nthe email url should be @example.org\nDo not say anything else, just provide the json\n"
+  let nonlegitimate = `You are a teacher that generates emails for users to inform them phishing emails how bad phishing emails are.
+
+  Your response should include a JSON object that should fill out the model provided and thats it.
+  
+  Use real names for first and last, subject and body should be indicative of whether they are phishing scams or real emails you could recieve in a workplace.
+  
+  Maximum Word for Category: 
+  Subject - 12.
+  Body - 35.
+  
+  If isPhish true, it can be unverified or secure. If isPhish false, it can only be secure.
+  
+  If a link is included, create a fake dummy link with 8 random integers and characters for isPhish true email.
+  
+  JSON Body is below:
+  
+  {
+  subject
+  first
+  last
+  body
+  email : mail@mail.com
+  verified: unverified or secure
+  isPhish : true
+  
+  }
+  
+  Avoid including any other input other than filling out the json body object.`
+  let legitimate = `You are a teacher that generates emails for users to inform them phishing emails how bad phishing emails are.
+
+  Your response should include a JSON object that should fill out the model provided and thats it.
+  
+  Use real names for first and last, subject and body should be indicative of whether they are phishing scams or real emails.
+  
+  Maximum Word for Category: 
+  Subject - 8.
+  Body - 20.
+  
+  JSON Body is below:
+  
+  {
+  subject
+  first
+  last
+  body
+  email : JohnDoe@mail.com
+  verified: unverified or secure
+  isPhish : false
+  
+  }
+  
+  Avoid including any other input other than filling out the json body object.`
   let arr = [nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate]
   randomChoice = arr[Math.floor(Math.random() * arr.length)]
 
   const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: randomChoice }],
+    messages: [{ role: 'assistant', content: nonlegitimate }],
     model: 'gpt-3.5-turbo',
   });
   return chatCompletion.choices[0].message;
@@ -66,7 +121,8 @@ app.get('/', (req, res) => {
   //send apiCall to the client
 
   apiCall().then((rem) => {
-    res.send(rem)
+    
+    res.send(rem);
   }
   )
 
