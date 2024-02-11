@@ -22,7 +22,7 @@ import BossHappy from '../assets/boss/boss_happy.png';
 let setup = false;
 let gameover = false
 let bonusTime = 0;
-const numOfEmails = localStorage.getItem('round')
+const numOfEmails = parseInt(localStorage.getItem('round'))
 const game = new Game(parseInt(numOfEmails) * 3, parseInt(numOfEmails) + 1);
 const inbox = new EmailFolder("Inbox", 100);
 const trash = new EmailFolder("Trash", 5);
@@ -73,28 +73,15 @@ function GameScreen() {
     const [timer, setTimer] = useState();
 
     const [data, setData] = useState({});
+
+
+    const emails = []
+
     useEffect(() => {
-        axios.get("http://localhost:4000/")
-            .then(response => {
-                //console.log("Data fetched:", response);
-                setData(response.data);
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-            });
+        
     }, [data.length]);
 
-    {/*{
-    Email:{
-        Subject: "Job Opportunity",
-        Body: "Exciting job opportunity available! Apply now and join our dynamic team.",
-        FromName: "Human Resources",
-        FromEmail: "hr@companyabc.com",
-        Attachments: "job_application_form.docx",
-        IsPhishing: "false",
-        Security: "true",
-    }
-    }*/}
+
 
     const handleNextImage = () => {
         setImage(getNextImage());
@@ -243,13 +230,32 @@ function GameScreen() {
     //set up game - LOADING SCREEN
 
     useEffect(() => {
+        if(setup===true) return
+        setup = true
+        for(let i = 0; i < numOfEmails; i++){
+
+            axios.get("http://localhost:4000/")
+            .then(response => {
+                // console.log(response.data)
+                emails.push(response.data)
+                // console.log(emails)
+
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+        }
+        
+
+        // console.log(emails.length)
+
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 500);
         return () => clearTimeout(timer);
     }, []);
 
-    if (isLoading) {
+    if (isLoading || emails.length != numOfEmails) {
         return <LoadingScreen />;
     }
 
@@ -259,6 +265,7 @@ function GameScreen() {
                 <div className="bg-primary 200 h-auto items-center justify-center flex">
                     <p className="text-background font-pixelated text-2xl">DON'T PHISH ME</p>
                 </div>
+
                 <div className="flex w-full">
                     <div className="w-1/3">
                         <p className="text-white font-pixelated py-1 pl-4 border-2 border-headerColorLight">Inbox: {unreadCount} Unread</p>
@@ -272,6 +279,10 @@ function GameScreen() {
                         <img src={BossHappy} className="h-40 absolute -top-8" />
                     </div>
                 </div>
+
+                <p className="text-background font-pixelated p-8">Inbox: {unreadCount} (unread mail)</p>
+                <p className="text-background font-pixelated pt-2 pl-8">Time Left: {isDigit(timer) ? timer : game.time}</p>
+
             </header>
 
 
