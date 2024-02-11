@@ -19,9 +19,23 @@ const GameScreen = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        setData(axios.get("http://localhost:4000/"));
-        console.log(data);
-    })
+        axios.get("http://localhost:4000/")
+            .then(response => {
+                console.log(response);
+                setData(response);
+                setIsLoading(false);
+                console.log(data);
+                //turn string into json
+                
+
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                setIsLoading(false);
+            });
+    }, []);
+
+
 
     useEffect(() => {
         if (playSound) {
