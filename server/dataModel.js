@@ -117,4 +117,4 @@ const sampleResponseNotLegimiate = {
     }
 }
 
-module.exports = {emailModel,sampleResponseLegimiate,sampleResponseNotLegimiate}
+module.exports = {emailModel,sampleResponseLegimiate,sampleResponseNotLegimiate,dummyEmails}

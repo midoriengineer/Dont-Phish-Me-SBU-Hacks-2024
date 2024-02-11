@@ -53,7 +53,8 @@ async function apiCall() {
   
   ${dataModel.emailModel}
   
-  Avoid including any other input other than filling out the json body object. AND DO NOT USE /n for the object, just make the json one line, return it as a json and not as a string`
+  Avoid including any other input other than filling out the json body object. AND AVOID USING /n for the object, just make the json one line, return it as a json and not as a string`
+
   let legitimate = "hello"
   let arr = [nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate]
   randomChoice = arr[Math.floor(Math.random() * arr.length)]
