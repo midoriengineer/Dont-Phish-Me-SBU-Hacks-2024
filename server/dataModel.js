@@ -1,5 +1,5 @@
 const emailModel =`{
-    Email: {
+   
         Subject: "",
         Body: "",
         FromName: "",
@@ -7,7 +7,6 @@ const emailModel =`{
         Attachments: "",
         IsPhishing: "",
         Security: "",
-      },
 }`
 
 const sampleResponseLegimiate = {

@@ -97,10 +97,21 @@ app.get('/', (req, res) => {
   //send apiCall to the client
 
   apiCall().then((rem) => {
-    console.log(JSON.parse(rem.content))
-    res.send(JSON.parse(rem.content));
-  })
-})
+
+    let extractedContent = rem.content.match(/\{([^}]+)\}/)[0];
+    let text = rem.content;
+    const startIndex = text.indexOf('{');
+    const endIndex = text.lastIndexOf('}');
+    const jsonObjectString = text.substring(startIndex, endIndex + 1);
+    console.log(jsonObjectString);
+    res.send(JSON.parse(jsonObjectString));
+  }
+  )
+
+
+
+}
+)
 
 //starts server 
 app.listen(port, () => {

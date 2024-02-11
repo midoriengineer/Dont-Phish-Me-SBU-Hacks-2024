@@ -33,9 +33,12 @@ function GameScreen() {
     useEffect(() => {
         axios.get("http://localhost:4000/")
             .then(response => {
-                console.log(response);
-                setData(response.data); // Make sure to set the response data here
+                console.log("Data fetched:", response);
+                setData(response.data.data); // Make sure to set the response data here
+                console.log(data)
+                
                 setIsLoading(false);
+                
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
@@ -105,10 +108,12 @@ function GameScreen() {
                     </div>
 
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
-                        <p className="font-cmd font-bold">{data.Subject}</p>
+                        <p className="font-cmd font-bold">{data["Subject"]}</p>
                     </div>
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
-                        <p className="font-cmd">{data.Body}</p>
+                        <p className="font-cmd">
+                            {data["Body"]}
+                        </p>
                     </div>
                     <div className="flex justify-center items-center">
                         <button className="text-center font-cmd bg-background border-2 border-secondary py-2 pl-6 m-4 px-14 py-2 shadow-custom">Reply</button>
