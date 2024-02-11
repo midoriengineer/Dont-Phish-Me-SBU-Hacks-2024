@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useMemo, useState, useEffect } from 'react';
 import LoadingScreen from '../components/loading_screen';
 import Trash from '../assets/trash.svg';
 import Check from '../assets/check.svg';
@@ -15,7 +15,27 @@ import { getNextImage } from '../components/randomImage';
 function GameScreen() {
     const [isLoading, setIsLoading] = useState(true);
     const [playSound, setPlaySound] = useState(null);
-    const [data, setData] = useState({
+    const [image, setImage] = useState(getNextImage());
+    const [data, setData] = useState({});
+    useEffect(() => {
+        axios.get("http://localhost:4000/")
+            .then(response => {
+                //console.log("Data fetched:", response);
+                setData(response.data);
+                
+                //console.log(data)
+
+                
+                
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                
+            });
+    }, [data.length]);
+
+
+    {/*{
         Subject: "Job Opportunity",
         Body: "Exciting job opportunity available! Apply now and join our dynamic team.",
         FromName: "Human Resources",
@@ -23,28 +43,13 @@ function GameScreen() {
         Attachments: "job_application_form.docx",
         IsPhishing: "false",
         Security: "true",
-    });
-    const [image, setImage] = useState(getNextImage());
+    }*/}
 
     const handleNextImage = () => {
         setImage(getNextImage());
     };
 
-    useEffect(() => {
-        axios.get("http://localhost:4000/")
-            .then(response => {
-                console.log("Data fetched:", response);
-                setData(response.data.data); // Make sure to set the response data here
-                console.log(data)
-                
-                setIsLoading(false);
-                
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-                setIsLoading(false);
-            });
-    }, []);
+
 
     useEffect(() => {
         if (playSound) {
@@ -91,11 +96,11 @@ function GameScreen() {
                         </div>
                         <p className="font-cmd text-s bg-background border-2 border-secondary py-2 pl-6 m-4 shadow-custom text-left"><span className="font-black">Name: </span>{data.FromName}</p>
                         <p className="font-cmd text-xs bg-background border-2 border-secondary py-6 pl-6 m-4 shadow-custom text-left">
-                            <span className="font-black">from:</span> &lt;{data.FromEmail}&gt;<br />
+                            {/* <span className="font-black">from:</span> &lt;{data.FromEmail}&gt;<br />
                             <span className="font-black">to: </span> "&lt;dontphishme@dpm.com&gt;<br />
                             <span className="font-black">date: </span>Feb 10, 2024, 1:04 AM<br />
                             <span className="font-black">subject: </span>{data.Subject}<br />
-                            <span className="font-black">security: </span>{data.Security}<br />
+                            <span className="font-black">security: </span>{data.Security}<br /> */}
                         </p>
                     </div>
                 </div>

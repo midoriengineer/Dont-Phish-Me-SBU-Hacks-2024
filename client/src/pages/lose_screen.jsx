@@ -1,18 +1,13 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
-const loseScreen = ({props}) => {
-    
-    
-    
+const loseScreen = ({ props }) => {
     return (
         <div>
-        <h1>You Win!</h1>
-        <button onClick={props.resetGame}>Play Again</button>
-        <button onClick={props.quitGame}>Quit</button>
+            <h1>You Win!</h1>
+            <Link to="/">Back Home</Link>
         </div>
-        
     );
-    }
-
+}
 
 export default loseScreen;
