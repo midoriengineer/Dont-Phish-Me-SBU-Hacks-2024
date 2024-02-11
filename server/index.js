@@ -53,6 +53,28 @@ async function apiCall() {
   
   ${dataModel.emailModel}
   
+
+  Avoid including any other input other than filling out the json body object. AND DO NOT USE /n for the object, just make the json one line, return it as a json and not as a string`
+  let legitimate = `You are a teacher that generates emails for users to inform them phishing emails how bad phishing emails are.
+
+  Your response should include a JSON object that should fill out the model provided and thats it.
+  
+  Use real names for first and last, subject and body should be indicative of whether they are phishing scams or real emails you could recieve in a workplace.
+
+Write safe emails that are not phishing and that are safe for the user to click on,also do not use links, best practices is telling the employee to come to the office or schedule a meeting or phone call
+  
+  Maximum Word for Category: 
+  Subject - 12.
+  Body - 35.
+  
+  If isPhish true, it can be unverified or secure. If isPhish false, it can only be secure.
+  
+  If a link is included, create a fake dummy link with 8 random integers and characters for isPhish true email.
+  
+  JSON Body is below:
+  
+  ${dataModel.emailModel}
+  
   Avoid including any other input other than filling out the json body object. AND DO NOT USE /n for the object, just make the json one line, return it as a json and not as a string`
   let legitimate = `You are a teacher that generates emails for users to inform them phishing emails how bad phishing emails are.
 
