@@ -18,4 +18,4 @@ export class Email {
         this.body = this.body + body;
     }
 
-}
+}export default Email;

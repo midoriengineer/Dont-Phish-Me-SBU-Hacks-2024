@@ -7,6 +7,7 @@ export class Game {
         this.misplacedEmails = []
         this.time = timeLimit
         this.numOfEmails = totalNumOfEmails
+        this.totalNumOfEmails = totalNumOfEmails
     }
 
     //If email placement is correct, add to score
@@ -33,7 +34,7 @@ export class Game {
     }
 
     CheckLose(){
-        if (this.misplacedEmails.length > 4) {
+        if (this.misplacedEmails.length >= Math.floor(parseFloat(this.totalNumOfEmails-1)/2.0)) {
             return true;
         }
         return false

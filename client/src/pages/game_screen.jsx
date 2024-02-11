@@ -18,6 +18,7 @@ import Attachment from '../assets/attachment.png';
 import BossNeutral from '../assets/boss/boss_neutral.png';
 import BossAngry from '../assets/boss/boss_angry.png';
 import BossHappy from '../assets/boss/boss_happy.png';
+import { emails } from '../components/Data';
 
 let setup = false;
 let gameover = false
@@ -75,7 +76,7 @@ function GameScreen() {
     const [data, setData] = useState({});
 
 
-    const [emails, setEmails] = useState([]);
+    // const [emails, setEmails] = useState([]);
 
     useEffect(() => {
         
@@ -83,12 +84,14 @@ function GameScreen() {
 
 
 
-    const handleNextImage = () => {
-        setImage(getNextImage());
-    };
+    
     //---------------------------------------------------------
     //FUNCTIONS----------------------------------------------------
    
+    const handleNextImage = () => {
+        setImage(getNextImage());
+    };
+
     function CheckWinLose() {
         if (gameover === true) return
         if (timer < 1) {
@@ -123,18 +126,18 @@ function GameScreen() {
         ).join("<br>"))
     }
 
-    function testing(email) {
-    }
+
 
     function addEmails() {
-        for (let i = 0; i < emails.length; i++) {
-            inbox.addEmail(emails[i])
+        for (let i = 0; i < numOfEmails; i++) {
+            inbox.addEmail(emails[Math.floor(Math.random() * emails.length)])
         }
         setUnreadCount(inbox.countUnread())
     }
 
     function setupInbox() {
         addEmails()
+        console.log(inbox.emails)
         setCurrentEmail(inbox.emails[0])
     }
 
@@ -166,6 +169,7 @@ function GameScreen() {
             bonusTime++
             setScore(game.score)
         }
+        handleNextImage()
         setCurrentEmail(inbox.emails[0])
 
     }
@@ -188,6 +192,8 @@ function GameScreen() {
             bonusTime++
             setScore(game.score)
         }
+        handleNextImage()
+
         setCurrentEmail(inbox.emails[0])
     }
 
@@ -227,29 +233,11 @@ function GameScreen() {
 
     //set up game - LOADING SCREEN
 
-    useEffect(() => {
-        if(setup===true) return
-        setup = true
-        for(let i = 0; i < numOfEmails; i++){
-
-            axios.get("http://localhost:4000/")
-            .then(response => {
-                //using spread operator to add the new email to the array
-                setEmails(prevEmails => [...prevEmails, response.data]);
-
-                console.log(emails)
-
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-            });
-        }
+    // useEffect(() => {
+    //     if(setup===true) return
+    //     setup = true
         
-
-        // console.log(emails.length)
-
-        
-    }, []);
+    // }, []);
 
  
 
@@ -262,20 +250,22 @@ function GameScreen() {
 
                 <div className="flex w-full">
                     <div className="w-1/3">
+                        <br></br>
+                        <br></br>
                         <p className="text-white font-pixelated py-1 pl-4 border-2 border-headerColorLight">Inbox: {unreadCount} Unread</p>
-                        <p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Sent Mail</p>
-                        <p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Starred</p>
+                        {/* <p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Sent Mail</p>
+                        <p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Starred</p> */}
                     </div>
                     <div className="w-1/3 items-center justify-center flex">
                         <h1 className="font-pixelated text-2xl text-white pl-4">Time Left: {isDigit(timer) ? timer : game.time}</h1>
                     </div>
-                    <div className="w-1/3 relative">
+                    {/* <div className="w-1/3 relative">
                         <img src={BossHappy} className="h-40 absolute -top-8" />
-                    </div>
+                    </div> */}
                 </div>
 
-                <p className="text-background font-pixelated p-8">Inbox: {unreadCount} (unread mail)</p>
-                <p className="text-background font-pixelated pt-2 pl-8">Time Left: {isDigit(timer) ? timer : game.time}</p>
+                {/* <p className="text-background font-pixelated p-8">Inbox: {unreadCount} (unread mail)</p>
+                <p className="text-background font-pixelated pt-2 pl-8">Time Left: {isDigit(timer) ? timer : game.time}</p> */}
 
             </header>
 
