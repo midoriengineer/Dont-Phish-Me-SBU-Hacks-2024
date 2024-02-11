@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import loseSound from '../assets/sounds/game-over.wav';
+import logo from '../assets/dps-logo.png';
 
 function LoseScreen() {
+    useEffect(() => {
+        const audio = new Audio(loseSound);
+        audio.play().catch(error => console.error("Error playing the sound:", error));
+    }, []);
     return (
         <div className="flex flex-col h-screen">
             <header className="bg-headerColor flex items-center justify-center">
-                <h1 className="text-background text-3xl text-center py-6 font-pixelated">Don't Phish Me</h1>
-            </header>
+                <img src={logo} alt="logo" width="85" className="my-3 mx-4" />
+                <h1 className="text-[#eae0d5] text-3xl text-center py-6 font-pixelated ">Don't Phish Me</h1>            </header>
             <div className="flex flex-1 bg-background items-center justify-center overflow-hidden">
                 <div className="bg-secondaryLight border-2 border-secondary rounded-2xl p-16 w-1/3 shadow-custom flex flex-col items-center justify-center"> {/* Flex applied here for content centering */}
                     <p className="text-center mb-4 font-pixelated text-primary text-2xl">You Lost!</p>

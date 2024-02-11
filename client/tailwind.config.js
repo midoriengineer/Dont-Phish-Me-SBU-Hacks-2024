@@ -27,6 +27,7 @@ module.exports = {
         'secondary': '#5e503f',
         'secondaryLight': '#c6ac8f',
         'headerColor': '#22333b',
+        'headerColorLight': '#587685',
       },
     },
     fontFamily: {
