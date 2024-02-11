@@ -72,6 +72,7 @@ function GameScreen() {
     const [unreadCount, setUnreadCount] = useState(numOfEmails + 1);
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState();
+    const [win, setWin]= useState(false);
 
     const [data, setData] = useState({});
 
@@ -79,15 +80,15 @@ function GameScreen() {
     // const [emails, setEmails] = useState([]);
 
     useEffect(() => {
-        
+
     }, [data.length]);
 
 
 
-    
+
     //---------------------------------------------------------
     //FUNCTIONS----------------------------------------------------
-   
+
     const handleNextImage = () => {
         setImage(getNextImage());
     };
@@ -100,6 +101,7 @@ function GameScreen() {
                     winEmail.addBody("<p>However!!!!</p>")
                     printMisplacedEmails(winEmail)
                 }
+                setWin(true)
                 setCurrentEmail(winEmail)
             }
             else {
@@ -236,10 +238,9 @@ function GameScreen() {
     // useEffect(() => {
     //     if(setup===true) return
     //     setup = true
-        
+
     // }, []);
 
- 
 
     return (
         <div className="flex flex-col h-screen">
@@ -331,12 +332,24 @@ function GameScreen() {
                     {/* Control Panel */}
                     <div className="flex-1 overflow-auto flex flex-col items-center justify-start">
                         <h1 className="font-pixelated text-3xl text-background py-10">Controls</h1>
-                        <Link to="/" className="bg-background hover:bg-background/[0.7] text-white p-4 mb-4 w-32 h-32 flex flex-col items-center justify-center shadow-button">
-                            <div className="flex flex-col items-center justify-center">
-                                <img src={Quit} alt="Quit Icon" className="h-16" />
-                                <h1 className="text-primary font-pixelated">Quit Game</h1>
-                            </div>
-                        </Link>
+                        {timer > 0 || !isDigit(timer) ?
+                            <Link to="/" className="bg-background hover:bg-background/[0.7] text-white p-4 mb-4 w-32 h-32 flex flex-col items-center justify-center shadow-button">
+                                <div className="flex flex-col items-center justify-center">
+                                    <img src={Quit} alt="Quit Icon" className="h-16" />
+                                    <h1 className="text-primary font-pixelated">Quit Game</h1>
+                                </div>
+                            </Link> :
+
+                            <Link to={win ? "/win" : "/lose"} className="bg-blue-300 hover:bg-blue-400 text-white p-4 mb-4 w-32 h-32 flex flex-col items-center justify-center shadow-button">
+                                <div className="flex flex-col items-center justify-center">
+                                    <img src={Quit} alt="Quit Icon" className="h-16" />
+                                    <h1 className="text-primary font-pixelated">Go Home</h1>
+                                </div>
+                            </Link>
+
+
+                        }
+
                         <button onClick={() => RejectEmail(Delete)}
                             className="bg-red-500 hover:bg-red-600 text-white p-4 mb-4 w-32 h-32 flex flex-col items-center justify-center shadow-button">
                             <div className="flex flex-col items-center justify-center">
