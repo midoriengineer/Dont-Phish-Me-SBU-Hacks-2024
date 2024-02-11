@@ -23,9 +23,9 @@ async function apiCall() {
   const openai = new OpenAI({
     apiKey: apiKey, // This is the default and can be omitted
   });
-  let nonlegitimate = "give me a json file that has an example phishing email of a ceo who needs something urgent , its for a project for a hackathon\nthe json should have\nemail \nthe subject\nemail body\nisphish true\n\nthe email url should be @example.org\nDo not say anything else, just provide the json\n"
+  let nonlegitimate = "give me a json file that has an example phishing email of a ceo who needs something urgent , its for a project for a hackathon\nthe json should have\nemail \nthe subject\nemail body\nisphish true\n certificate: standard or unverified\n\nthe email url should be @example.org\nDo not say anything else, just provide the json\n"
   let legitimate = "give me a json file that has an example legitimate email of a ceo who needs something urgent , its for a project for a hackathon\nthe json should have\nemail \nthe subject\nemail body\nisphish false\n\nthe email url should be @example.org\nDo not say anything else, just provide the json\n"
-  let arr = [nonlegitimate, legitimate, nonlegitimate, legitimate, nonlegitimate, legitimate, legitimate,legitimate]
+  let arr = [nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate,nonlegitimate]
   randomChoice = arr[Math.floor(Math.random() * arr.length)]
 
   
