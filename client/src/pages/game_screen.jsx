@@ -197,7 +197,7 @@ function GameScreen() {
     //track time + trigger win condition
 
     useEffect(() => {
-        if (timer === null || gameover ===true) return
+        if (timer === null || gameover === true) return
         console.log("lol")
         if (timer < 1 || (inbox.emails.length < 1 && !(currentEmail && currentEmail.body === startEmail.body))) {
             console.log("hi")
@@ -270,7 +270,7 @@ function GameScreen() {
                         <div className="flex-1 overflow-auto w-full">
                             <h1 className="font-pixelated font-bold text-4xl text-primary mt-8 mb-6 text-center">About</h1>
                             <div className="w-48 h-48 overflow-hidden shadow-circle object-center flex justify-center items-center mx-auto mb-10"> {/* Centered div */}
-                                <img src={image} className="w-full h-full object-cover object-center" /> {/* Centered image */}
+                                <img src={image} className="w-full h-full object-cover object-center" />
                             </div>
                             <p className="font-cmd text-s bg-background border-2 border-secondary py-2 pl-6 m-4 shadow-custom text-left"><span className="font-black">Name: </span>{currentEmail.fromName}</p>
                             <p className="font-cmd text-xs bg-background border-2 border-secondary py-6 pl-6 m-4 shadow-custom text-left">
