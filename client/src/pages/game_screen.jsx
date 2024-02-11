@@ -12,16 +12,20 @@ import { Email } from '../components/Email';
 import { EmailFolder } from '../components/EmailFolder';
 import { Game } from '../components/Game';
 import Attachment from '../assets/attachment.png';
+import LoadingScreen from '../components/loading_screen';
 
 import { emails } from '../components/Data';
 
+
 let setup = false;
+let start = false;
 let gameover = false
 let bonusTime = 0;
 const numOfEmails = parseInt(localStorage.getItem('round'))
 const game = new Game(parseInt(numOfEmails) * 6, parseInt(numOfEmails) + 1);
 const inbox = new EmailFolder("Inbox", 100);
 const trash = new EmailFolder("Trash", 5);
+console.log(numOfEmails)
 
 //DEBUG EMAILS --- CHANGE LATER ---------------------
 const startEmail = new Email(
@@ -64,7 +68,7 @@ function GameScreen() {
     const [image, setImage] = useState(getNextImage());
     const [currentEmail, setCurrentEmail] = useState(startEmail);
     const [recentDeleted, setRecentDeleted] = useState([]);
-    const [unreadCount, setUnreadCount] = useState(numOfEmails + 1);
+    const [unreadCount, setUnreadCount] = useState(parseInt(numOfEmails + 1));
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState();
     const [win, setWin] = useState(false);
@@ -75,8 +79,11 @@ function GameScreen() {
     // const [emails, setEmails] = useState([]);
 
     useEffect(() => {
+        if (setup === true) return
+        setup = true
 
-    }, [data.length]);
+
+    }, []);
 
     //---------------------------------------------------------
     //FUNCTIONS----------------------------------------------------
@@ -111,7 +118,7 @@ function GameScreen() {
         email.addBody(game.misplacedEmails.map(e =>
             "<br></br>" +
             '<p style="color:' + (e.isPhish ? "red" : "green") +
-            ';">THIS EMAIL WAS ' + (e.isPhish ? "" : "NOT") + " A SCAM</p><p>From: " +
+            ';">THIS EMAIL WAS ' + (e.isPhish === true ? "" : "NOT") + " A SCAM</p><p>From: " +
             e.fromName + " (" + e.fromEmail + ")</p><p>Subject: " +
             e.subject + "</p><p>" +
             e.body + "</p><p>" +
@@ -123,7 +130,9 @@ function GameScreen() {
 
     function addEmails() {
         for (let i = 0; i < numOfEmails; i++) {
-            inbox.addEmail(emails[Math.floor(Math.random() * emails.length)])
+            // let ooo = emails[Math.floor(Math.random() * emails.length)]
+            // console.log(ooo)
+            inbox.addEmail(emails[i])
         }
         setUnreadCount(inbox.countUnread())
     }
@@ -136,6 +145,7 @@ function GameScreen() {
 
     function checkStartGame() {
         if (currentEmail.body === startEmail.body) {
+            start = true
             setTimer(parseInt(game.time))
             setupInbox()
             return true
@@ -197,12 +207,16 @@ function GameScreen() {
     //track time + trigger win condition
 
     useEffect(() => {
+<<<<<<< Updated upstream
         if (timer === null || gameover === true) return
+=======
+        if (timer === null) return
+>>>>>>> Stashed changes
         console.log("lol")
-        if (timer < 1 || (inbox.emails.length < 1 && !(currentEmail && currentEmail.body === startEmail.body))) {
+        if (timer < 1 ) {
             console.log("hi")
 
-            setTimer(0)
+            // setTimer(0)
             CheckWinLose()
             return
         }
@@ -235,6 +249,7 @@ function GameScreen() {
     //     setup = true
 
     // }, []);
+
 
 
     return (

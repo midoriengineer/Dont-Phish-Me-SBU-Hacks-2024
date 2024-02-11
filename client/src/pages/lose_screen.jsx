@@ -5,6 +5,7 @@ import logo from '../assets/dps-logo.png';
 import AngryBoss from '../assets/boss/boss_angry.png';
 
 function LoseScreen() {
+    localStorage.clear();
     useEffect(() => {
         const audio = new Audio(loseSound);
         audio.play().catch(error => console.error("Error playing the sound:", error));

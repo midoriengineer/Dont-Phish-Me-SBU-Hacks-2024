@@ -5,6 +5,7 @@ import logo from '../assets/dps-logo.png';
 import HappyBoss from '../assets/boss/boss_happy.png';
 
 function WinScreen() {
+    localStorage.clear();
     useEffect(() => {
         const audio = new Audio(winSound);
         audio.play().catch(error => console.error("Error playing the sound:", error));

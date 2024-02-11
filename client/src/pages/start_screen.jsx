@@ -25,6 +25,10 @@ const StartScreen = () => {
     const handleRoundChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedRound(selectedValue);
+        window.localStorage.removeItem('round');
+        localStorage.removeItem('round');
+        window.localStorage.clear();
+        localStorage.clear();
         localStorage.setItem('round', selectedValue);
     };
 

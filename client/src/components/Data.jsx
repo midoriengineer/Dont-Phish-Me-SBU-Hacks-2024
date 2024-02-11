@@ -11,6 +11,17 @@ export const emails = [
     false, //phish
     true //security
   ),
+  // Phishing Attempts
+  new Email(
+    "Product Launch",
+    "Exciting new product launch! We sell magical pills that will help you lose 100lbs in 2 days! Check out the attached brochure for more details.",
+    "Miracle Pill",
+    "marketing@companyabc.com",
+    "product_launch.png",
+    "product_brochure.pdf",
+    true,
+    true
+  ),
   new Email(
     "Update on Your Job Application",
     "We have unfortunately decided to move forward with other candidates due to record layoffs. Better luck next time.",
@@ -40,6 +51,16 @@ export const emails = [
     true
   ),
   new Email(
+    "Congratulations!",
+    "You're a winner! Claim your prize by following the instructions in the attached file.",
+    "Promotions Team",
+    "winner@promotions.com",
+    "winner.png",
+    "claim_prize_instructions.txt",
+    true,
+    false
+  ),
+  new Email(
     "Important Notice",
     "Your CFO has not paid his electric bill for the last 3 months. His account is past due. Please forward this to the billing dept.",
     "Optimum Support",
@@ -55,26 +76,6 @@ export const emails = [
     "info@netflix.com",
     "account_update.docx",
     false,
-    true
-  ),
-
-  // Phishing Attempts
-  new Email(
-    "Inheritance",
-    "Hello dear, this is your grandmother. I am leaving an inheritance for you of $1,000,000. Click this link to claim it.",
-    "Granny Smith",
-    "sweetgrammy@sbumail.com",
-    true, // phish
-    false // security
-  ),
-  new Email(
-    "Product Launch",
-    "Exciting new product launch! We sell magical pills that will help you lose 100lbs in 2 days! Check out the attached brochure for more details.",
-    "Miracle Pill",
-    "marketing@companyabc.com",
-    "product_launch.png",
-    "product_brochure.pdf",
-    true,
     true
   ),
   new Email(
@@ -116,13 +117,11 @@ export const emails = [
     false
   ),
   new Email(
-    "Congratulations!",
-    "You're a winner! Claim your prize by following the instructions in the attached file.",
-    "Promotions Team",
-    "winner@promotions.com",
-    "winner.png",
-    "claim_prize_instructions.txt",
-    true,
-    false
-  ),
+    "Inheritance",
+    "Hello dear, this is your grandmother. I am leaving an inheritance for you of $1,000,000. Click this link to claim it.",
+    "Granny Smith",
+    "sweetgrammy@sbumail.com",
+    true, // phish
+    false // security
+  )
 ];
