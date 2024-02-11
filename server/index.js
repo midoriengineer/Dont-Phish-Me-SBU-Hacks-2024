@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 //const apiCall = require('./coolapi');
 
 const app = express();
-const port= 3000;
+const port= 4000;
 
 // This will be the middleware to parse JSON files
 app.use(bodyParser.json());
@@ -82,8 +82,8 @@ app.get('/', (req, res) => {
 )
 
 //starts server 
-app.listen(3000, () => {
-    console.log('Subject: server is running on http://localhost:3000/')
+app.listen(port, () => {
+    console.log(`Subject: server is running on http://localhost:${port}/`)
     }
 
 )
