@@ -85,7 +85,7 @@ const GameScreen = () => {
                     </div>
 
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
-                        <p className="font-cmd font-bold">Subject</p>
+                        <p className="font-cmd font-bold">{data.Subject}</p>
                     </div>
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
                         <p className="font-cmd">

@@ -2,13 +2,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 //const apiCall = require('./coolapi');
-
+const dataModel = require('./dataModel')
 const app = express();
 const port = 4000;
 //cors
 const cors = require('cors');
 app.use(cors());
-
 
 
 // This will be the middleware to parse JSON files
@@ -23,6 +22,7 @@ async function apiCall() {
   const openai = new OpenAI({
     apiKey: apiKey, // This is the default and can be omitted
   });
+
   let nonlegitimate = `You are a teacher that generates emails for users to inform them phishing emails how bad phishing emails are.
 
   Your response should include a JSON object that should fill out the model provided and thats it.
@@ -39,42 +39,10 @@ async function apiCall() {
   
   JSON Body is below:
   
-  {
-  subject
-  first
-  last
-  body
-  email : mail@mail.com
-  verified: unverified or secure
-  isPhish : true
+  ${dataModel.emailModel}
   
-  }
-  
-  Avoid including any other input other than filling out the json body object.`
-  let legitimate = `You are a teacher that generates emails for users to inform them phishing emails how bad phishing emails are.
-
-  Your response should include a JSON object that should fill out the model provided and thats it.
-  
-  Use real names for first and last, subject and body should be indicative of whether they are phishing scams or real emails.
-  
-  Maximum Word for Category: 
-  Subject - 8.
-  Body - 20.
-  
-  JSON Body is below:
-  
-  {
-  subject
-  first
-  last
-  body
-  email : JohnDoe@mail.com
-  verified: unverified or secure
-  isPhish : false
-  
-  }
-  
-  Avoid including any other input other than filling out the json body object.`
+  Avoid including any other input other than filling out the json body object. AND DO NOT USE /n for the object, just make the json one line, return it as a json and not as a string`
+  let legitimate = "hello"
   let arr = [nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate, nonlegitimate]
   randomChoice = arr[Math.floor(Math.random() * arr.length)]
 
@@ -121,8 +89,9 @@ app.get('/', (req, res) => {
   //send apiCall to the client
 
   apiCall().then((rem) => {
-    
-    res.send(rem);
+    console.log(JSON.parse(rem.content))
+
+    res.send(JSON.parse(rem.content));
   }
   )
 
