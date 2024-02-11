@@ -65,53 +65,29 @@ async function apiCall() {
   return chatCompletion.choices[0].message;
 
 }
-// // Route to the random emails // basically what was being done in the emailRouter.js
-// app.post('/generate-emails', (req, res) => {
-//   // Extract the subject and body from the request body
-//   const { subject, body } = req.body;
-//   const apiCall = require('./coolapi.js');
-//   // Generate a random number (0 or 1) to determine if it's a phishing link or a legitimate link
-//   const isPhishing = Math.random() < 0.5;
 
-//   // Construct the phishing email object
-//   const email = {
-//     subject: subject,
-//     body: body,
-//     link: isPhishing ? 'http://phishing.example.com' : 'http://legitimate.example.com',
-//     isPhishing: isPhishing,
-//     // New Security Category , Added within Email
-//     // If it is a phishing email, the security category is 'Unverified' or 
-//     securityCategory: isPhishing ? (Math.random() < 0.5 ? 'Unverified' : 'Encrypted') : 'Encrypted'
-//   };
 
-//   //this is what will be returned // sends as JSON response
-//   res.json(email);
-// });
 
-//This will work as a default route
 app.get('/', (req, res) => {
-  //send json response
-  //turn string into json
-  str = "{'message': 'Hello, World!'}"
-  //using async
-  //send apiCall to the client
-
-  apiCall().then((rem) => {
-
-    let extractedContent = rem.content.match(/\{([^}]+)\}/)[0];
-    let text = rem.content;
-    const startIndex = text.indexOf('{');
-    const endIndex = text.lastIndexOf('}');
-    const jsonObjectString = text.substring(startIndex, endIndex + 1);
-    console.log(jsonObjectString);
-    res.send(JSON.parse(jsonObjectString));
-  }
-  )
-
-
-
-}
-)
+    // send json response
+    // turn string into json
+    str = "{'message': 'Hello, World!'}";
+    // using async
+    // send apiCall to the client
+    apiCall().then((rem) => {
+      let extractedContent = rem.content.match(/\{([^}]+)\}/)[0];
+      let text = rem.content;
+      const startIndex = text.indexOf('{');
+      const endIndex = text.lastIndexOf('}');
+      const jsonObjectString = text.substring(startIndex, endIndex + 1);
+      console.log(jsonObjectString);
+      res.send(JSON.parse(jsonObjectString));
+    }).catch((error) => {
+      // Handle errors by sending random data from the array
+      const randomIndex = Math.floor(Math.random() * dataModel.dummyEmails.length);
+      res.status(500).send(dataModel.dummyEmails[randomIndex]);
+    });
+  });
 
 //starts server 
 app.listen(port, () => {
