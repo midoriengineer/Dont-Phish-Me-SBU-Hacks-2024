@@ -75,7 +75,7 @@ function GameScreen() {
     const [data, setData] = useState({});
 
 
-    const emails = []
+    const [emails, setEmails] = useState([]);
 
     useEffect(() => {
         
@@ -88,9 +88,7 @@ function GameScreen() {
     };
     //---------------------------------------------------------
     //FUNCTIONS----------------------------------------------------
-    function emails() {
-
-    }
+   
     function CheckWinLose() {
         if (gameover === true) return
         if (timer < 1) {
@@ -236,9 +234,10 @@ function GameScreen() {
 
             axios.get("http://localhost:4000/")
             .then(response => {
-                // console.log(response.data)
-                emails.push(response.data)
-                // console.log(emails)
+                //using spread operator to add the new email to the array
+                setEmails(prevEmails => [...prevEmails, response.data]);
+
+                console.log(emails)
 
             })
             .catch(error => {
