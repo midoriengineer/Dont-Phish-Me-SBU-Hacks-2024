@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LoadingScreen from '../components/loading_screen'; import { Link } from 'react-router-dom';
-import logo from '../assets/pl-icon2.png'
+import logo from '../assets/phish-logo.png'
 
 const StartScreen = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -43,8 +43,13 @@ const StartScreen = () => {
                 //PRE-START SCREEN---------------------------- 
                 <div className={`titlescreen-background ${transition ? 'zoomed' : ''}`}>
 
+                        {/* <img src={logo} alt="logo" width="100" className="my-12 mx-auto" /> */}
+                        <h1 className="text-[#000] text-3xl text-center my-12 font-pixelated ">Don't Phish Me</h1>
+
                     <div className="button-container">
-                        <button onClick={transitionPage}>ENTER</button>
+                        <button onClick={transitionPage} className="flex items-center text-center font-cmd bg-background border-2 border-secondary py-2 m-4 py-2 shadow-custom">
+                        &nbsp;&nbsp; ENTER &nbsp;&nbsp;
+                        </button>
                     </div>
 
                 </div>
@@ -54,7 +59,7 @@ const StartScreen = () => {
                 <div className="flex flex-col h-screen">
                     <header className="bg-[#22333b] flex items-center justify-center">
                         <img src={logo} alt="logo" width="65" className="my-3 mx-4" />
-                        <h1 className="text-[#eae0d5] text-3xl text-center py-6 font-pixelated ">Don't Phish Me</h1>
+                        {/* <h1 className="text-[#eae0d5] text-3xl text-center py-6 font-pixelated ">Don't Phish Me</h1> */}
                     </header>
                     <div className="bg-[#eae0d5] flex flex-1 overflow-hidden">
 
@@ -87,7 +92,15 @@ const StartScreen = () => {
                                         <option value="10">10</option>
                                     </select>
                                 </div>
-                                <Link to="/game" className="font-cmd w-full bg-headerColor shadow-custom text-white rounded-lg px-4 py-2 hover:bg-primary">Start Game</Link>
+                                {selectedRound === '' ? (
+                                    <button disabled="true" className="font-cmd w-full bg-headerColor shadow-custom text-white rounded-lg px-4 py-2 hover:bg-primary">
+                                        Start Game
+                                    </button>
+                                ) : (
+                                    <Link to="/game"><button className="font-cmd w-full bg-headerColor shadow-custom text-white rounded-lg px-4 py-2 hover:bg-primary">
+                                        Start Game</button>
+                                    </Link>
+                                )}
                             </div>
                         </div>
 
