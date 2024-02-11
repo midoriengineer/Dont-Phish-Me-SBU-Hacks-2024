@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import LoadingScreen from '../components/loading_screen';
 import { Link } from 'react-router-dom';
 import logo from '../assets/dps-logo.png';
+import Twinkle from '../assets/sounds/twinkle.mp3';
+
 
 const StartScreen = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -10,11 +12,15 @@ const StartScreen = () => {
     const [selectedRound, setSelectedRound] = useState('');
 
     function transitionPage() {
-        setTransition(true);
+        const sound = new Audio(Twinkle); // Create an audio object using the Twinkle sound
+        sound.play().catch(error => console.error("Error playing the sound:", error)); // Play the sound
+
+        setTransition(true); // Continue with the rest of the transition logic
         setTimeout(() => {
             setEndOfStart(true);
         }, 400);
     }
+
 
     const handleRoundChange = (e) => {
         const selectedValue = e.target.value;

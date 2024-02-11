@@ -1,12 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import LoadingScreen from '../components/loading_screen';
 import Trash from '../assets/trash.svg';
 import Check from '../assets/check.svg';
 import Quit from '../assets/quit.svg';
 import Approve from '../assets/sounds/approve.wav';
 import Delete from '../assets/sounds/delete.wav';
-import GameOver from '../assets/sounds/game-over.wav';
-import GameWin from '../assets/sounds/game-win.wav';
 import Dots from '../assets/dots.svg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -15,9 +12,7 @@ import { Email } from '../components/Email';
 import { EmailFolder } from '../components/EmailFolder';
 import { Game } from '../components/Game';
 import Attachment from '../assets/attachment.png';
-import BossNeutral from '../assets/boss/boss_neutral.png';
-import BossAngry from '../assets/boss/boss_angry.png';
-import BossHappy from '../assets/boss/boss_happy.png';
+
 import { emails } from '../components/Data';
 
 let setup = false;
@@ -82,9 +77,6 @@ function GameScreen() {
     useEffect(() => {
 
     }, [data.length]);
-
-
-
 
     //---------------------------------------------------------
     //FUNCTIONS----------------------------------------------------
@@ -250,14 +242,12 @@ function GameScreen() {
                 </div>
 
                 <div className="flex w-full">
-                    <div className="w-1/3">
-                        <br></br>
-                        <br></br>
-                        <p className="text-white font-pixelated py-1 pl-4 border-2 border-headerColorLight">Inbox: {unreadCount} Unread</p>
-                        {/* <p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Sent Mail</p>
-                        <p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Starred</p> */}
+                    <div className="w-1/4">
+                        <p className="text-white font-pixelated py-3 pl-4 border-2 border-headerColorLight">Inbox: {unreadCount} Unread</p>
+                        <p className="text-background font-pixelated py-3 pl-4 border-2 border-headerColorLight">Score: 0</p>
+                        {/*<p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Starred</p> */}
                     </div>
-                    <div className="w-1/3 items-center justify-center flex">
+                    <div className="w-2/4 items-center justify-center flex">
                         <h1 className="font-pixelated text-2xl text-white pl-4">Time Left: {isDigit(timer) ? timer : game.time}</h1>
                     </div>
                     {/* <div className="w-1/3 relative">
