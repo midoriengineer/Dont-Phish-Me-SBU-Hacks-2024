@@ -3,13 +3,13 @@ import React from "react";
 export class Email {
 
 
-    constructor(subject, body, fromName, fromEmail, icon, attachments, isPhish, security) {
+    constructor(subject, body, fromName, fromEmail, icon, attachment, isPhish, security) {
         this.subject = subject;
         this.body = body;
         this.fromName = fromName;
         this.fromEmail = fromEmail;
         this.icon = icon;
-        this.attachments = attachments;
+        this.attachment = attachment;
         this.isPhish = isPhish;
         this.security = security;
     }

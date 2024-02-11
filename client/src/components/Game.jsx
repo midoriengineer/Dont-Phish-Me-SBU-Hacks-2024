@@ -26,18 +26,14 @@ export class Game {
     }
 
     CheckWin(){
-        console.log(this.numOfEmails)
         if (this.numOfEmails < 1) {
-            console.log("You win!")
             return true;
         }
         return false
     }
 
     CheckLose(){
-        console.log(this.misplacedEmails.length)
         if (this.misplacedEmails.length > 4) {
-            console.log("You lose!")
             return true;
         }
         return false
