@@ -17,8 +17,20 @@ const dotenv = require('dotenv').config();
 const OpenAI = require('openai');
 
 async function apiCall() {
+  let data = {
+    Subject: "Job Opportunity",
+    Body: "Exciting job opportunity available! Apply now and join our dynamic team.",
+    FromName: "Human Resources",
+    FromEmail: "hr@companyabc.com",
+    Attachments: "job_application_form.docx",
+    IsPhishing: "false",
+    Security: "true",
+  };
+
   //console.log(apiKey)
-  const apiKey = dotenv.parsed.OPEN_API_KEY
+
+  //!const apiKey = dotenv.parsed.OPEN_API_KEY
+
   const openai = new OpenAI({
     apiKey: apiKey, // This is the default and can be omitted
   });
@@ -53,10 +65,6 @@ async function apiCall() {
   return chatCompletion.choices[0].message;
 
 }
-
-
-
-
 // Route to the random emails // basically what was being done in the emailRouter.js
 app.post('/generate-emails', (req, res) => {
   // Extract the subject and body from the request body
@@ -90,19 +98,11 @@ app.get('/', (req, res) => {
 
   apiCall().then((rem) => {
     console.log(JSON.parse(rem.content))
-
     res.send(JSON.parse(rem.content));
-  }
-  )
-
-
-
-}
-)
+  })
+})
 
 //starts server 
 app.listen(port, () => {
   console.log(`Subject: server is running on http://localhost:${port}/`)
-}
-
-)
+})
