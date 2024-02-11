@@ -63,8 +63,6 @@ const StartScreen = () => {
                         </ul>
                     </div>
                 </div>
-
-
             </div>
         </div >
     );
