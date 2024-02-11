@@ -207,11 +207,7 @@ function GameScreen() {
     //track time + trigger win condition
 
     useEffect(() => {
-<<<<<<< Updated upstream
-        if (timer === null || gameover === true) return
-=======
         if (timer === null) return
->>>>>>> Stashed changes
         console.log("lol")
         if (timer < 1 ) {
             console.log("hi")
