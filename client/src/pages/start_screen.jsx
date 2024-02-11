@@ -37,12 +37,10 @@ const StartScreen = () => {
         !endOfStart ?
             //PRE-START SCREEN---------------------------- 
             <div className={`titlescreen-background ${transition ? 'zoomed' : ''}`}>
-                <h1 className="text-[#000] text-3xl text-center my-12 font-pixelated animate-blink">Don't Phish Me</h1>
-                <div className="button-container">
-                    <button onClick={transitionPage} className="flex items-center text-center font-cmd bg-background border-2 border-secondary py-2 m-4 py-2 shadow-custom transform transition-transform hover:scale-110">
-                        &nbsp;&nbsp; ENTER &nbsp;&nbsp;
-                    </button>
-                </div>
+                <h1 className="text-primary bg-background text-6xl text-center my-12 py-12 font-pixelated animate-blink shadow-custom">Don't Phish Me!</h1>
+                <button onClick={transitionPage} className="flex items-center text-center font-cmd bg-background border-2 border-secondary m-4 py-4 px-8 text-2xl shadow-custom transform transition-transform hover:scale-110">
+                    &nbsp;&nbsp; ENTER &nbsp;&nbsp;
+                </button>
             </div>
             :
             //START SCREEN---------------------------- 
