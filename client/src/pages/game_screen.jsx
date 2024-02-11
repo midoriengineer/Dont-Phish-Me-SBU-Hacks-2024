@@ -87,23 +87,22 @@ function GameScreen() {
 
     function CheckWinLose() {
         if (gameover === true) return
-        if (timer < 1) {
-            if (game.CheckWin() && !game.CheckLose()) {
-                if (game.misplacedEmails.length > 0) {
-                    winEmail.addBody("<p>However!!!!</p>")
-                    printMisplacedEmails(winEmail)
-                }
-                setWin(true)
-                setCurrentEmail(winEmail)
+        gameover = true
+        if (game.CheckWin() && !game.CheckLose()) {
+            if (game.misplacedEmails.length > 0) {
+                winEmail.addBody("<p>However!!!!</p>")
+                printMisplacedEmails(winEmail)
             }
-            else {
-                if (game.numOfEmails > 0) loseEmail.addBody("<p>Look at how many emails are left. Shame on you!</p>")
-                if (game.misplacedEmails.length > 0) printMisplacedEmails(loseEmail)
-
-                setCurrentEmail(loseEmail)
-            }
-            gameover = true
+            setWin(true)
+            setCurrentEmail(winEmail)
         }
+        else {
+            if (game.numOfEmails > 0) loseEmail.addBody("<p>Look at how many emails are left. Shame on you!</p>")
+            if (game.misplacedEmails.length > 0) printMisplacedEmails(loseEmail)
+
+            setCurrentEmail(loseEmail)
+        }
+
     }
 
 
@@ -116,7 +115,7 @@ function GameScreen() {
             e.fromName + " (" + e.fromEmail + ")</p><p>Subject: " +
             e.subject + "</p><p>" +
             e.body + "</p><p>" +
-            (e.attachment ? "Attachment: " + e.attachments : "") + "</p>"
+            (e.attachment != undefined && e.attachment != null && e.attachment != "" ? "Attachment: " + e.attachments : "") + "</p>"
         ).join("<br>"))
     }
 
@@ -198,8 +197,9 @@ function GameScreen() {
     //track time + trigger win condition
 
     useEffect(() => {
-        if (timer === null) return
-        if (timer < 1) {
+        if (timer === null || gameover ===true) return
+        if (timer < 1 || (inbox.emails.length < 1 && !(currentEmail && currentEmail.body === startEmail.body))) {
+            setTimer(0)
             CheckWinLose()
             return
         }
