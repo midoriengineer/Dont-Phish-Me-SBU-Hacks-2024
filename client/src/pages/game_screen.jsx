@@ -3,6 +3,7 @@ import LoadingScreen from '../components/loading_screen';
 import Trash from '../assets/trash.svg';
 import Check from '../assets/check.svg';
 import Quit from '../assets/quit.svg';
+import Attachment from '../assets/attachment.png';
 import ProfileImage from '../assets/creepyguy.jpg';
 import Approve from '../assets/sounds/approve.wav';
 import Delete from '../assets/sounds/delete.wav';
@@ -16,9 +17,10 @@ import { Game } from '../components/Game';
 
 
 let setup = false;
+let gameover = false
 let bonusTime = 0;
 const numOfEmails = localStorage.getItem('round')
-const game = new Game(numOfEmails * 3, numOfEmails + 1);
+const game = new Game(parseInt(numOfEmails) * 3, parseInt(numOfEmails) + 1);
 const inbox = new EmailFolder("Inbox", 100);
 const trash = new EmailFolder("Trash", 5);
 
@@ -30,7 +32,7 @@ const startEmail = new Email(
     "Boss Man",
     "boss@gmail.com",
     "boss.png",
-    [],
+    "",
     false,
     true
 )
@@ -41,7 +43,7 @@ const winEmail = new Email(
     "Boss Man",
     "boss@gmail.com",
     "boss.png",
-    [],
+    "",
     false,
     true
 )
@@ -52,119 +54,119 @@ const loseEmail = new Email(
     "Boss Man",
     "boss@gmail.com",
     "boss.png",
-    [],
+    "",
     false,
     true
 )
 
 const emails = [
-    new Email(
-        "Greetings",
-        "Dear Customer, your account has been updated. Please review the changes.",
-        "Company ABC",
-        "info@companyabc.com",
-        "icon.png",
-        ["file.pdf", "image.jpg"],
-        false,
-        true
-    ),
-    new Email(
-        "Important Notice",
-        "Your recent purchase confirmation is attached. If you didn't make this purchase, please contact us.",
-        "Online Store",
-        "noreply@store.com",
-        "icon.png",
-        ["receipt.pdf", "promo.png"],
-        false,
-        true
-    ),
-    new Email(
-        "Verify Your Account",
-        "We noticed unusual activity on your account. Please click the link to verify your identity.",
-        "Security Team",
-        "security@securemail.com",
-        "shield.png",
-        ["verification.docx"],
-        true,
-        false
-    ),
-    new Email(
-        "Urgent Action Required",
-        "Your attention is needed immediately. Click the link to take action.",
-        "Customer Support",
-        "support@urgent.com",
-        "alert.png",
-        ["action_required.pdf"],
-        true,
-        false
-    ),
-    new Email(
-        "Exclusive Offer",
-        "Congratulations! You've been selected for an exclusive offer. Claim your reward now.",
-        "Promotions Team",
-        "promo@exclusive.com",
-        "gift.png",
-        ["special_offer.jpg"],
-        false,
-        true
-    ),
-    new Email(
-        "Invoice Reminder",
-        "Your invoice is due soon. Please make payment to avoid any disruptions.",
-        "Billing Department",
-        "billing@companyxyz.com",
-        "invoice.png",
-        ["invoice.pdf"],
-        false,
-        true
-    ),
-    new Email(
-        "Account Update",
-        "Action required: Update your account information to continue enjoying our services.",
-        "Service Provider",
-        "info@serviceprovider.com",
-        "update.png",
-        ["account_update.docx"],
-        true,
-        true
-    ),
-    new Email(
-        "Survey Invitation",
-        "We value your opinion. Participate in our survey and get a chance to win exciting prizes.",
-        "Research Team",
-        "survey@research.com",
-        "survey.png",
-        ["survey_link.txt"],
-        false,
-        true
-    ),
-    new Email(
-        "Important Announcement",
-        "An important announcement regarding changes to our policies. Please review and acknowledge.",
-        "Management Team",
-        "management@companyxyz.com",
-        "announcement.png",
-        ["policy_changes.pdf"],
-        false,
-        true
-    ),
-    new Email(
-        "Account Suspension",
-        "Due to suspicious activity, your account has been temporarily suspended. Click to appeal.",
-        "Security Team",
-        "security@securemail.com",
-        "lock.png",
-        ["appeal_form.docx"],
-        true,
-        true
-    ),
+    // new Email(
+    //     "Greetings",
+    //     "Dear Customer, your account has been updated. Please review the changes.",
+    //     "Company ABC",
+    //     "info@companyabc.com",
+    //     "icon.png",
+    //     ["file.pdf", "image.jpg"],
+    //     false,
+    //     true
+    // ),
+    // new Email(
+    //     "Important Notice",
+    //     "Your recent purchase confirmation is attached. If you didn't make this purchase, please contact us.",
+    //     "Online Store",
+    //     "noreply@store.com",
+    //     "icon.png",
+    //     ["receipt.pdf", "promo.png"],
+    //     false,
+    //     true
+    // ),
+    // new Email(
+    //     "Verify Your Account",
+    //     "We noticed unusual activity on your account. Please click the link to verify your identity.",
+    //     "Security Team",
+    //     "security@securemail.com",
+    //     "shield.png",
+    //     ["verification.docx"],
+    //     true,
+    //     false
+    // ),
+    // new Email(
+    //     "Urgent Action Required",
+    //     "Your attention is needed immediately. Click the link to take action.",
+    //     "Customer Support",
+    //     "support@urgent.com",
+    //     "alert.png",
+    //     ["action_required.pdf"],
+    //     true,
+    //     false
+    // ),
+    // new Email(
+    //     "Exclusive Offer",
+    //     "Congratulations! You've been selected for an exclusive offer. Claim your reward now.",
+    //     "Promotions Team",
+    //     "promo@exclusive.com",
+    //     "gift.png",
+    //     ["special_offer.jpg"],
+    //     false,
+    //     true
+    // ),
+    // new Email(
+    //     "Invoice Reminder",
+    //     "Your invoice is due soon. Please make payment to avoid any disruptions.",
+    //     "Billing Department",
+    //     "billing@companyxyz.com",
+    //     "invoice.png",
+    //     ["invoice.pdf"],
+    //     false,
+    //     true
+    // ),
+    // new Email(
+    //     "Account Update",
+    //     "Action required: Update your account information to continue enjoying our services.",
+    //     "Service Provider",
+    //     "info@serviceprovider.com",
+    //     "update.png",
+    //     ["account_update.docx"],
+    //     true,
+    //     true
+    // ),
+    // new Email(
+    //     "Survey Invitation",
+    //     "We value your opinion. Participate in our survey and get a chance to win exciting prizes.",
+    //     "Research Team",
+    //     "survey@research.com",
+    //     "survey.png",
+    //     ["survey_link.txt"],
+    //     false,
+    //     true
+    // ),
+    // new Email(
+    //     "Important Announcement",
+    //     "An important announcement regarding changes to our policies. Please review and acknowledge.",
+    //     "Management Team",
+    //     "management@companyxyz.com",
+    //     "announcement.png",
+    //     ["policy_changes.pdf"],
+    //     false,
+    //     true
+    // ),
+    // new Email(
+    //     "Account Suspension",
+    //     "Due to suspicious activity, your account has been temporarily suspended. Click to appeal.",
+    //     "Security Team",
+    //     "security@securemail.com",
+    //     "lock.png",
+    //     ["appeal_form.docx"],
+    //     true,
+    //     true
+    // ),
     new Email(
         "Invoice #1234",
         "Attached is the invoice for your recent purchase. Please review and make the payment.",
         "Billing Department",
         "billing@companyxyz.com",
         "invoice.png",
-        ["invoice_1234.pdf"],
+        "invoice_1234.pdf",
         false,
         true
     ),
@@ -174,7 +176,7 @@ const emails = [
         "Security Team",
         "security@securemail.com",
         "security.png",
-        ["account_security.pdf"],
+        "account_security.pdf",
         true,
         true
     ),
@@ -184,7 +186,7 @@ const emails = [
         "Human Resources",
         "hr@companyabc.com",
         "job.png",
-        ["job_application_form.docx"],
+        "job_application_form.docx",
         false,
         true
     ),
@@ -194,7 +196,7 @@ const emails = [
         "IT Department",
         "it@companyxyz.com",
         "update.png",
-        ["system_update_details.pdf"],
+        "system_update_details.pdf",
         false,
         true
     ),
@@ -204,7 +206,7 @@ const emails = [
         "Promotions Team",
         "winner@promotions.com",
         "winner.png",
-        ["claim_prize_instructions.txt"],
+        "claim_prize_instructions.txt",
         true,
         true
     ),
@@ -214,7 +216,7 @@ const emails = [
         "Account Services",
         "account@serviceprovider.com",
         "verify.png",
-        ["account_verification_link.html"],
+        "account_verification_link.html",
         true,
         true
     ),
@@ -224,7 +226,7 @@ const emails = [
         "Marketing Team",
         "marketing@companyabc.com",
         "product_launch.png",
-        ["product_brochure.pdf"],
+        "product_brochure.pdf",
         false,
         true
     ),
@@ -234,7 +236,7 @@ const emails = [
         "IT Security",
         "security@companyxyz.com",
         "alert.png",
-        ["phishing_test_instructions.txt"],
+        "phishing_test_instructions.txt",
         true,
         true
     ),
@@ -244,7 +246,7 @@ const emails = [
         "Sales Team",
         "sales@companyxyz.com",
         "exclusive_offer.png",
-        ["discount_code.pdf"],
+        "discount_code.pdf",
         false,
         true
     ),
@@ -254,7 +256,7 @@ const emails = [
         "Customer Support",
         "support@companyxyz.com",
         "upgrade.png",
-        ["upgrade_details.docx"],
+        "upgrade_details.docx",
         false,
         true
     )
@@ -281,6 +283,7 @@ const GameScreen = () => {
     //FUNCTIONS----------------------------------------------------
 
     function CheckWinLose() {
+        if (gameover === true) return
         if (timer < 1) {
             if (game.CheckWin() && !game.CheckLose()) {
                 if (game.misplacedEmails.length > 0) {
@@ -295,19 +298,20 @@ const GameScreen = () => {
 
                 setCurrentEmail(loseEmail)
             }
+            gameover = true
         }
     }
 
     function printMisplacedEmails(email) {
         email.addBody("<p>Below are all the emails you let slip through the crack: </p>")
         email.addBody(game.misplacedEmails.map(e =>
-            "<hr></hr>" +
+            "<br></br>" +
             '<p style="color:' + (e.isPhish ? "red" : "green") +
             ';">THIS EMAIL WAS ' + (e.isPhish ? "" : "NOT") + " A SCAM</p><p>From: " +
             e.fromName + " (" + e.fromEmail + ")</p><p>Subject: " +
             e.subject + "</p><p>" +
             e.body + "</p><p>" +
-            e.attachments.join(", ") + "</p>"
+            (e.attachment ? "Attachment: " + e.attachments : "")  + "</p>"
         ).join("<br>"))
     }
 
@@ -325,7 +329,7 @@ const GameScreen = () => {
 
     function checkStartGame() {
         if (currentEmail.body === startEmail.body) {
-            setTimer(game.time)
+            setTimer(parseInt(game.time))
             setupInbox()
             return true
         }
@@ -338,7 +342,7 @@ const GameScreen = () => {
 
     function ApproveEmail(sound) {
         handleButtonClick(sound)
-        if (currentEmail === undefined || (timer && timer < 1)) return
+        if (currentEmail === undefined || (isDigit(timer) && timer < 1)) return
 
         if (!checkStartGame()) inbox.removeEmail(currentEmail)
         setUnreadCount(inbox.countUnread())
@@ -357,7 +361,7 @@ const GameScreen = () => {
 
     function RejectEmail(sound) {
         handleButtonClick(sound)
-        if (currentEmail === undefined || (timer && timer < 1)) return
+        if (currentEmail === undefined || (isDigit(timer) && timer < 1)) return
 
         if (!checkStartGame()) inbox.removeEmail(currentEmail)
 
@@ -469,12 +473,18 @@ const GameScreen = () => {
                             <p className="font-cmd font-bold">{currentEmail.subject}</p>) : null}
                     </div>
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
-                        <p className="font-cmd">
-                            {currentEmail ? (<div dangerouslySetInnerHTML={{ __html: currentEmail.body }} /> )   : (
+                        <br></br>
+                        <div className="font-cmd">
+                            {currentEmail ? (<><div dangerouslySetInnerHTML={{ __html: currentEmail.body }} />
+                            {currentEmail ? (<><br></br><p>{currentEmail.fromName}</p></> ): null}
+                            
+                            {currentEmail.attachment != "" && currentEmail.attachment ? <><br></br><br></br><img src={Attachment} style={{display: "inline", maxWidth: "20px"}}/> &nbsp; {currentEmail.attachment}</> : null}
+                            </> )   : (
                                 <p>Your inbox is empty.</p>
                             )}
 
-                        </p>
+                        </div>
+                        <br></br>
                     </div>
                     <div className="flex justify-center items-center">
                         <button className="text-center font-cmd bg-background border-2 border-secondary py-2 pl-6 m-4 px-14 py-2 shadow-custom">Reply</button>
