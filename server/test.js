@@ -1,3 +1,5 @@
-const dataModel = require('./dataModel');
+const x = " a``` {const x } ```";
 
-console.log(dataModel)
+// Extract content inside curly braces
+const extractedContent = x.match(/\{([^}]+)\}/)[0];
+console.log(extractedContent)

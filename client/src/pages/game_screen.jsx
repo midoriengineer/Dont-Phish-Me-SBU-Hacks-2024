@@ -17,17 +17,15 @@ const GameScreen = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [playSound, setPlaySound] = useState(null);
     const [data, setData] = useState(null);
-
     useEffect(() => {
         axios.get("http://localhost:4000/")
             .then(response => {
-                console.log(response);
-                setData(response);
-                setIsLoading(false);
-                console.log(data);
-                //turn string into json
+                console.log("Data fetched:", response);
+                setData(response.data);
+                console.log(data)
                 
-
+                setIsLoading(false);
+                
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
@@ -99,11 +97,11 @@ const GameScreen = () => {
                     </div>
 
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
-                        <p className="font-cmd font-bold">{data.Subject}</p>
+                        <p className="font-cmd font-bold">{data["Subject"]}</p>
                     </div>
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
                         <p className="font-cmd">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl dolor, tincidunt aliquam rutrum sed, cursus quis diam. Donec facilisis auctor nulla, sit amet aliquam diam convallis in. Morbi et vestibulum lectus. Morbi elementum congue tortor, ac accumsan felis lobortis vel. Fusce sed justo scelerisque, sodales risus nec, volutpat ante. Proin aliquet arcu sed felis aliquam egestas. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi feugiat elit vel eros pellentesque vulputate. Suspendisse non tellus finibus, finibus magna id, aliquam nisl.
+                            {data["Body"]}
                         </p>
                     </div>
                     <div className="flex justify-center items-center">
