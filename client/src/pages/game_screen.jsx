@@ -15,7 +15,9 @@ import { Email } from '../components/Email';
 import { EmailFolder } from '../components/EmailFolder';
 import { Game } from '../components/Game';
 import Attachment from '../assets/attachment.png';
-
+import BossNeutral from '../assets/boss/boss_neutral.png';
+import BossAngry from '../assets/boss/boss_angry.png';
+import BossHappy from '../assets/boss/boss_happy.png';
 
 let setup = false;
 let gameover = false
@@ -58,7 +60,6 @@ const loseEmail = new Email(
     false,
     true
 )
-//DEBUG EMAILS --- CHANGE LATER ---------------------
 function GameScreen() {
     //---------------------------------------------------------
     //VARIABLES----------------------------------------------------
@@ -87,7 +88,9 @@ function GameScreen() {
     };
     //---------------------------------------------------------
     //FUNCTIONS----------------------------------------------------
+    function emails() {
 
+    }
     function CheckWinLose() {
         if (gameover === true) return
         if (timer < 1) {
@@ -120,6 +123,9 @@ function GameScreen() {
             e.body + "</p><p>" +
             (e.attachment ? "Attachment: " + e.attachments : "") + "</p>"
         ).join("<br>"))
+    }
+
+    function testing(email) {
     }
 
     function addEmails() {
@@ -190,11 +196,9 @@ function GameScreen() {
     function isDigit(value) {
         return typeof value === 'number' && !isNaN(value) && value % 1 === 0;
     }
-
-    //---------------------------------------------------------
     //HOOKS----------------------------------------------------
-
     //track time + trigger win condition
+
     useEffect(() => {
         if (timer === null) return
         if (timer < 1) {
@@ -258,17 +262,32 @@ function GameScreen() {
     return (
         <div className="flex flex-col h-screen">
             <header className="bg-headerColor h-1/6">
-                <div className="bg-primary 200 h-1/6">
+                <div className="bg-primary 200 h-auto items-center justify-center flex">
                     <p className="text-background font-pixelated text-2xl">DON'T PHISH ME</p>
                 </div>
+
+                <div className="flex w-full">
+                    <div className="w-1/3">
+                        <p className="text-white font-pixelated py-1 pl-4 border-2 border-headerColorLight">Inbox: {unreadCount} Unread</p>
+                        <p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Sent Mail</p>
+                        <p className="text-background font-pixelated py-1 pl-4 border-2 border-headerColorLight">Starred</p>
+                    </div>
+                    <div className="w-1/3 items-center justify-center flex">
+                        <h1 className="font-pixelated text-2xl text-white pl-4">Time Left: {isDigit(timer) ? timer : game.time}</h1>
+                    </div>
+                    <div className="w-1/3 relative">
+                        <img src={BossHappy} className="h-40 absolute -top-8" />
+                    </div>
+                </div>
+
                 <p className="text-background font-pixelated p-8">Inbox: {unreadCount} (unread mail)</p>
                 <p className="text-background font-pixelated pt-2 pl-8">Time Left: {isDigit(timer) ? timer : game.time}</p>
+
             </header>
+
 
             <div className="flex flex-1 overflow-hidden">
                 <div className="w-1/4 bg-secondaryLight p-4 flex flex-col items-center">
-
-                    {/* ABOUT SECTION */}
                     {currentEmail ? (
                         <div className="flex-1 overflow-auto w-full">
                             <h1 className="font-pixelated font-bold text-4xl text-primary mt-8 mb-6 text-center">About</h1>
