@@ -226,24 +226,23 @@ function GameScreen() {
     //set up game - LOADING SCREEN
 
     useEffect(() => {
+        if(setup===true) return
+        setup = true
+        for(let i = 0; i < numOfEmails; i++){
 
-        axios.get("http://localhost:4000/")
+            axios.get("http://localhost:4000/")
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 emails.push(response.data)
+                // console.log(emails)
+
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
             });
-        
-        for(let i = 0; i < numOfEmails; i++){
-
-            
-
-            
         }
+        
 
-        console.log(emails)
         // console.log(emails.length)
 
         const timer = setTimeout(() => {
