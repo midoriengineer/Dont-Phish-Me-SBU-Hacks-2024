@@ -24,7 +24,7 @@ let setup = false;
 let gameover = false
 let bonusTime = 0;
 const numOfEmails = parseInt(localStorage.getItem('round'))
-const game = new Game(parseInt(numOfEmails) * 3, parseInt(numOfEmails) + 1);
+const game = new Game(parseInt(numOfEmails) * 6, parseInt(numOfEmails) + 1);
 const inbox = new EmailFolder("Inbox", 100);
 const trash = new EmailFolder("Trash", 5);
 
@@ -72,7 +72,7 @@ function GameScreen() {
     const [unreadCount, setUnreadCount] = useState(numOfEmails + 1);
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState();
-    const [win, setWin]= useState(false);
+    const [win, setWin] = useState(false);
 
     const [data, setData] = useState({});
 
