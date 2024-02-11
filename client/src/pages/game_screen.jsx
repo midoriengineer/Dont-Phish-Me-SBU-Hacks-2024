@@ -10,11 +10,18 @@ import GameOver from '../assets/sounds/game-over.wav';
 import GameWin from '../assets/sounds/game-win.wav';
 import Dots from '../assets/dots.svg';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 const GameScreen = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [playSound, setPlaySound] = useState(null);
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        setData(axios.get("http://localhost:4000/"));
+        console.log(data);
+    })
 
     useEffect(() => {
         if (playSound) {
@@ -78,7 +85,7 @@ const GameScreen = () => {
                     </div>
 
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
-                        <p className="font-cmd font-bold">Please Confirm Your SSN</p>
+                        <p className="font-cmd font-bold">Subject</p>
                     </div>
                     <div className="bg-background border-2 border-secondary py-2 pl-6 m-6 shadow-custom">
                         <p className="font-cmd">
