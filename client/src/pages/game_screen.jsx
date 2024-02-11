@@ -248,15 +248,10 @@ function GameScreen() {
 
         // console.log(emails.length)
 
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 500);
-        return () => clearTimeout(timer);
+        
     }, []);
 
-    if (isLoading || emails.length != numOfEmails) {
-        return <LoadingScreen />;
-    }
+ 
 
     return (
         <div className="flex flex-col h-screen">
